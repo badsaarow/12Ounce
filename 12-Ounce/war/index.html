@@ -1,0 +1,222 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>커피하우스 12온스</title>
+    <!-- 홈화면에 추가 아이콘 등록 --> 
+    <!-- 안드로이드 용 홈화면에 추가 아이콘 등록 --> 
+    <link rel="apple-touch-icon-precomposed" href="icon114.png" />
+    <!-- 시작 이미지 설정 -->   
+    <link rel="apple-touch-startup-image" href="startup.png">
+    <!-- 사파리 기본 UI 숨김 -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- 상태바 스타일 변경, default/black/black-translucent -->   
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0rc1/jquery.mobile-1.0rc1.min.css" />
+    <!-- Photo Swipe CSS 설정 추가 -->
+   	<link href="photoswipe/examples/jquery-mobile.css" type="text/css" rel="stylesheet" />
+	<link href="photoswipe/photoswipe.css" type="text/css" rel="stylesheet" />
+
+    <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.0rc1/jquery.mobile-1.0rc1.min.js"></script>
+    
+     <!-- Photo Swipe 자바스크립트 설정 추가 -->
+ 	<script src="photoswipe/lib/klass.min.js"></script>   
+	<script src="photoswipe/code.photoswipe.jquery-3.0.5.min.js"></script>
+	<script type="text/javascript">
+		
+		/*
+		 * IMPORTANT!!!
+		 * REMEMBER TO ADD  rel="external"  to your anchor tags. 
+		 * If you don't this will mess with how jQuery Mobile works
+		 */
+		
+		(function(window, $, PhotoSwipe){
+			
+			$(document).ready(function(){
+				
+				$('div.gallery-page')
+					.live('pageshow', function(e){
+						
+						var 
+							currentPage = $(e.target),
+							options = {},
+							photoSwipeInstance = $("ul.gallery a", e.target).photoSwipe(options,  currentPage.attr('id'));
+							
+						return true;
+						
+					})
+					
+					.live('pagehide', function(e){
+						
+						var 
+							currentPage = $(e.target),
+							photoSwipeInstance = PhotoSwipe.getInstance(currentPage.attr('id'));
+
+						if (typeof photoSwipeInstance != "undefined" && photoSwipeInstance != null) {
+							PhotoSwipe.detatch(photoSwipeInstance);
+						}
+						
+						return true;
+						
+					});
+				
+			});
+		
+		}(window, window.jQuery, window.Code.PhotoSwipe));
+		
+	</script>
+
+    <script type="text/javascript" >
+		$(document).ready(function() {
+			// 처음 flag값을 false로 초기화 시킴
+			$("#pic_president").data("flag","false");
+			
+			// flag 값에 따라 스타일을 small과 large를 교환하며 적용
+			$("#pic_president").click(  function() {				
+				var bflag = $("#pic_president").data("flag");	
+				if (bflag == "false" ) {
+					bflag = "true";
+					$("#pic_president").removeClass("small");
+					$("#pic_president").addClass("large");
+				} else {
+					bflag = "false";
+					$("#pic_president").removeClass("large");
+					$("#pic_president").addClass("small");
+				};
+				$("#pic_president").data("flag",bflag);
+			} );				
+		});
+	</script>    
+        
+	<style type="text/css">
+		/* 메인 페이지 용 */
+		#logo {
+			width:75px;
+			height:75px;
+			text-indent:-9999px;
+			background-image: url(images/logo_s.png);
+			background-repeat: no-repeat;
+			margin-top: 10px;
+			margin-right: auto;
+			margin-bottom: 10px;
+			margin-left: auto;
+		}   
+	   .title_style {
+			color: #3F3C30;
+			padding-top: 10px;
+	   }
+
+	   #pic_president {
+			float: left;
+			margin-right: 10px;
+			margin-bottom: 10px;
+			-webkit-transition-property: width;
+			-webkit-transition-duration: .3s;
+		}	
+		
+		.floating_img {
+			float: left;
+			margin-right: 10px;
+			margin-bottom: 10px;
+			-webkit-transition-property: width;
+			-webkit-transition-duration: .3s;
+		}		
+		.small {
+			width: 30%;
+		}
+		.large {
+			width: 100%;
+		}		
+		.clear_both {
+			clear: both;
+		}		
+		.bold_style {
+			font-weight: bold;
+			color: #950000;
+		}
+    </style>
+
+</head>
+
+<body>	
+	<!-- 메인 페이지-->
+    <div data-role="page" id="main">
+    	<div data-role="header" data-theme="c">     
+			<h2 id="logo">12온스</h2>
+        </div>         
+        <div data-role="content" data-theme="d">
+        	<div style="width:400px;">
+        		<img src="images/logo_b.jpg" alt="" class="floating_img"/>
+        		<h3>서울특별시 성동구 성수2가3동 289-273</h3>
+        		<h3>tel. 02-468-8034</h3>
+        	</div>
+            <ul data-role="listview" data-inset="true" class="clear_both">
+                <li><a href="map.html" rel="external">
+                            <img src="images/map_i.png" alt="" class="ui-li-thumb" />
+                            <h3 class="title_style">지도에서 12온스 찾기</h3>
+                      </a>
+                </li>              
+                <li><a href="#campus_images" >
+                            <img src="images/pic_i.png" alt="" class="ui-li-thumb" />
+                            <h3 class="title_style">인테리어</h3>
+                      </a>
+                </li>
+                <li><a href="menu.html">
+                            <img src="images/movie_i.png" alt="" class="ui-li-thumb"/>
+                            <h3 class="title_style">메뉴</h3>
+                      </a>
+                </li>                  
+                <li ><a href="#intro" >
+                            <img src="images/intro_i.png" alt="" class="ui-li-thumb"/>
+                            <h3 class="title_style">커피하우스 12온스는...</h3>
+                        </a>
+                </li> 
+            </ul>         
+        </div> <!-- content 끝-->		
+    </div><!-- page 끝-->
+
+	<!-- 인테리어 페이지-->
+    <div data-role="page"  id="campus_images" class="gallery-page" >
+      <div data-role="header">
+        <a href="#main" data-icon="home" data-direction="reverse" class="ui-btn-left">Home</a>     
+        <h1>인테리어</h1>
+      </div><!-- header 끝 -->
+      
+      <div data-role="content"  data-theme="d">
+            <ul class="gallery">
+                <li><a href="pic/full/ca01.jpg" rel="external"><img src="pic/thumb/ca01.jpg" alt="전경" /></a></li>
+                <li><a href="pic/full/ca02.jpg" rel="external"><img src="pic/thumb/ca02.jpg" alt="1층" /></a></li>
+                <li><a href="pic/full/ca03.jpg" rel="external"><img src="pic/thumb/ca03.jpg" alt="2층" /></a></li>
+            </ul>
+        </div>
+  
+        <div data-role="footer">
+        </div>
+          
+    </div>
+    
+  	<!--  소개 페이지-->
+ 	<div data-role="page" id="intro" data-add-back-btn="true" > 
+		<div data-role="header" data-theme="a" >
+        	<a href="#main" data-icon="home" data-direction="reverse" class="ui-btn-left">Home</a>
+        	<h1>12온스는...</h1>
+        </div> 
+        
+        <div data-role="content" data-theme="c">
+           	<img class="small"  id="pic_president" src="images/building01_b.jpg" alt="">
+            <h2>"맛있는 커피..." </h2>
+            <div class="clear_both"></div>            
+           	<p>커피가 맛있어요.</p>
+			<p>빙수도 맛있어요.</p>
+        </div>
+        <div data-role="footer">
+        </div>
+    </div>
+       
+</body>
+</html>
